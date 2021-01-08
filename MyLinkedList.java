@@ -27,10 +27,10 @@ public class MyLinkedList{
 		return true;
 	}
 
-	public boolean add(int index, String value){
+	public void add(int index, String value){
 		if(size == 0){
 			add(value);
-			return true;
+			return;
 		}
 		if(index < 0 || index > size)
 			throw new IndexOutOfBoundsException();
@@ -40,14 +40,14 @@ public class MyLinkedList{
 			n.setPrev(end);
 			end = n;
 			++size;
-			return true;
+			return;
 		}
 		if(index == 0){
 			n.setNext(start);
 			start.setPrev(end);
 			start = n;
 			++size;
-			return true;
+			return;
 		}
 		Node tmp = start;
 		for(int i=0; i<index; i++){
@@ -57,6 +57,14 @@ public class MyLinkedList{
 		n.setNext(tmp);
 		tmp.getPrev().setNext(n);
 		tmp.setPrev(n);
-		return true;
+	}
+
+	public String get(int index){
+		if(index < 0 || index >= size)
+			throw new IndexOutOfBoundsException();
+		Node tmp = start;
+		for(int i=0; i<index; i++)
+			tmp = tmp.getNext();
+		return tmp.getData();
 	}
 }
