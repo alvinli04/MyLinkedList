@@ -22,27 +22,23 @@ public class MyLinkedList{
 			return true;
 		}
 		end.setNext(n);
+		n.setPrev(end);
 		end = n;
 		++size;
 		return true;
 	}
 
 	public void add(int index, String value){
-		if(size == 0){
+		if(index < 0 || index > size)
+			throw new IndexOutOfBoundsException();
+		
+		Node n = new Node(value);
+		
+		if(index == size){
 			add(value);
 			return;
 		}
-		if(index < 0 || index > size)
-			throw new IndexOutOfBoundsException();
-		Node n = new Node(value);
-		if(index == size){
-			end.setNext(n);
-			n.setPrev(end);
-			end = n;
-			++size;
-			return;
-		}
-		if(index == 0){
+		else if(index == 0){
 			n.setNext(start);
 			start.setPrev(end);
 			start = n;
@@ -53,10 +49,11 @@ public class MyLinkedList{
 		for(int i=0; i<index; i++){
 			tmp = tmp.getNext();
 		}
-		n.setPrev(tmp.getPrev());
-		n.setNext(tmp);
-		tmp.getPrev().setNext(n);
+		Node f = tmp.getPrev();
+		f.setNext(n);
+		n.setPrev(f);
 		tmp.setPrev(n);
+		n.setNext(tmp);
 		++size;
 	}
 
