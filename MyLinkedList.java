@@ -57,6 +57,7 @@ public class MyLinkedList{
 		n.setNext(tmp);
 		tmp.getPrev().setNext(n);
 		tmp.setPrev(n);
+		++size;
 	}
 
 	public String get(int index){
@@ -66,5 +67,17 @@ public class MyLinkedList{
 		for(int i=0; i<index; i++)
 			tmp = tmp.getNext();
 		return tmp.getData();
+	}
+
+	public String set(int index, String element){
+		if(index < 0 || index >= size)
+			throw new IndexOutOfBoundsException();
+		Node tmp = start;
+		for(int i=0; i<index; i++){
+			tmp = tmp.getNext();
+		}
+		String tmpDat = tmp.getData();
+		tmp.setData(element);
+		return tmpDat;
 	}
 }
