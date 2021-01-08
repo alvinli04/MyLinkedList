@@ -80,4 +80,17 @@ public class MyLinkedList{
 		tmp.setData(element);
 		return tmpDat;
 	}
+
+	public String toString(){
+		if(size == 0){
+			return "[]";
+		}
+		String ret = "[" + start.getData();
+		Node tmp = start;
+		while(tmp != end){
+			tmp = tmp.getNext();
+			ret += ", " + tmp.getData();
+		}
+		return ret + "]";
+	}
 }
