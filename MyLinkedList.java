@@ -137,5 +137,10 @@ public class MyLinkedList{
 		return ret;
 	}
 
-
+	public void extend(MyLinkedList other){
+		end.setNext(other.start);
+		other.start.setPrev(end);
+		end = other.end;
+		other = new MyLinkedList();
+	}
 }
