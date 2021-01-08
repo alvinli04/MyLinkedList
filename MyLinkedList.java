@@ -40,7 +40,7 @@ public class MyLinkedList{
 		}
 		else if(index == 0){
 			n.setNext(start);
-			start.setPrev(end);
+			start.setPrev(n);
 			start = n;
 			++size;
 			return;
@@ -86,6 +86,19 @@ public class MyLinkedList{
 		Node tmp = start;
 		while(tmp != end){
 			tmp = tmp.getNext();
+			ret += ", " + tmp.getData();
+		}
+		return ret + "]";
+	}
+
+	public String toStringReversed(){
+		if(size == 0){
+			return "[]";
+		}
+		String ret = "[" + end.getData();
+		Node tmp = end;
+		while(tmp != start){
+			tmp = tmp.getPrev();
 			ret += ", " + tmp.getData();
 		}
 		return ret + "]";
